@@ -1,7 +1,12 @@
 {
     "name": "sy-records/think-template",
-    "description": "the php template engine",
+    "description": "use think template engine for hyperf.",
     "license": "Apache-2.0",
+	"keywords": [
+        "php",
+        "hyperf",
+		"think-template"
+    ],
     "authors": [
         {
             "name": "liu21st",
