@@ -24,12 +24,14 @@ class Template
 {
     /**
      * 模板变量
+     *
      * @var array
      */
     protected $data = [];
 
     /**
      * 模板配置参数
+     *
      * @var array
      */
     protected $config = [
@@ -64,36 +66,42 @@ class Template
 
     /**
      * 保留内容信息
+     *
      * @var array
      */
     private $literal = [];
 
     /**
      * 扩展解析规则
+     *
      * @var array
      */
     private $extend = [];
 
     /**
      * 模板包含信息
+     *
      * @var array
      */
     private $includeFile = [];
 
     /**
      * 模板存储对象
+     *
      * @var object
      */
     protected $storage;
 
     /**
      * 查询缓存对象
+     *
      * @var CacheInterface
      */
     protected $cache;
 
     /**
      * 架构函数
+     *
      * @access public
      * @param  array $config
      */
@@ -118,6 +126,7 @@ class Template
 
     /**
      * 模板变量赋值
+     *
      * @access public
      * @param  array $vars 模板变量
      * @return $this
@@ -130,6 +139,7 @@ class Template
 
     /**
      * 模板引擎参数赋值
+     *
      * @access public
      * @param  string $name
      * @param  mixed  $value
@@ -141,6 +151,7 @@ class Template
 
     /**
      * 设置缓存对象
+     *
      * @access public
      * @param  CacheInterface $cache 缓存对象
      * @return void
@@ -152,6 +163,7 @@ class Template
 
     /**
      * 模板引擎配置
+     *
      * @access public
      * @param  array $config
      * @return $this
@@ -164,6 +176,7 @@ class Template
 
     /**
      * 获取模板引擎配置项
+     *
      * @access public
      * @param  string $name
      * @return mixed
@@ -175,6 +188,7 @@ class Template
 
     /**
      * 模板变量获取
+     *
      * @access public
      * @param  string $name 变量名
      * @return mixed
@@ -201,8 +215,9 @@ class Template
 
     /**
      * 扩展模板解析规则
+     *
      * @access public
-     * @param  string   $rule 解析规则
+     * @param  string   $rule     解析规则
      * @param  callable $callback 解析规则
      * @return void
      */
@@ -211,13 +226,14 @@ class Template
         $this->extend[$rule] = $callback;
     }
 
-	/**
-	 * 渲染模板文件 update：修改返回值
-	 * @param string $template 模板文件
-	 * @param array $vars 模板变量
-	 * @return string
-	 * @throws \Psr\SimpleCache\InvalidArgumentException
-	 */
+    /**
+     * 渲染模板文件 update：修改返回值
+     *
+     * @param  string $template 模板文件
+     * @param  array  $vars     模板变量
+     * @return string
+     * @throws \Psr\SimpleCache\InvalidArgumentException
+     */
     public function fetch(string $template, array $vars = []): string
     {
         if ($vars) {
@@ -263,6 +279,7 @@ class Template
 
     /**
      * 检查编译缓存是否存在
+     *
      * @access public
      * @param  string $cacheId 缓存的id
      * @return boolean
@@ -279,9 +296,10 @@ class Template
 
     /**
      * 渲染模板内容
+     *
      * @access public
      * @param  string $content 模板内容
-     * @param  array  $vars 模板变量
+     * @param  array  $vars    模板变量
      * @return void
      */
     public function display(string $content, array $vars = []): void
@@ -303,8 +321,11 @@ class Template
 
     /**
      * 设置布局
+     *
      * @access public
-     * @param  mixed  $name 布局模板名称 false 则关闭布局
+     * @param  mixed  $name    布局模板名称
+     *                         false
+     *                         则关闭布局
      * @param  string $replace 布局模板内容替换标识
      * @return $this
      */
@@ -333,6 +354,7 @@ class Template
     /**
      * 检查编译缓存是否有效
      * 如果无效则需要重新编译
+     *
      * @access private
      * @param  string $cacheFile 缓存文件名
      * @return bool
@@ -370,8 +392,9 @@ class Template
 
     /**
      * 编译模板文件内容
+     *
      * @access private
-     * @param  string $content 模板内容
+     * @param  string $content   模板内容
      * @param  string $cacheFile 缓存文件名
      * @return void
      */
@@ -423,6 +446,7 @@ class Template
     /**
      * 模板解析入口
      * 支持普通标签和TagLib解析 支持自定义标签库
+     *
      * @access public
      * @param  string $content 要解析的模板内容
      * @return void
@@ -493,6 +517,7 @@ class Template
 
     /**
      * 检查PHP语法
+     *
      * @access private
      * @param  string $content 要解析的模板内容
      * @return void
@@ -511,6 +536,7 @@ class Template
 
     /**
      * 解析模板中的布局标签
+     *
      * @access private
      * @param  string $content 要解析的模板内容
      * @return void
@@ -541,6 +567,7 @@ class Template
 
     /**
      * 解析模板中的include标签
+     *
      * @access private
      * @param  string $content 要解析的模板内容
      * @return void
@@ -581,6 +608,7 @@ class Template
 
     /**
      * 解析模板中的extend标签
+     *
      * @access private
      * @param  string $content 要解析的模板内容
      * @return void
@@ -669,9 +697,10 @@ class Template
 
     /**
      * 替换页面中的literal标签
+     *
      * @access private
-     * @param  string   $content 模板内容
-     * @param  boolean  $restore 是否为还原
+     * @param  string  $content 模板内容
+     * @param  boolean $restore 是否为还原
      * @return void
      */
     private function parseLiteral(string &$content, bool $restore = false): void
@@ -704,9 +733,10 @@ class Template
 
     /**
      * 获取模板中的block标签
+     *
      * @access private
-     * @param  string   $content 模板内容
-     * @param  boolean  $sort 是否排序
+     * @param  string  $content 模板内容
+     * @param  boolean $sort    是否排序
      * @return array
      */
     private function parseBlock(string &$content, bool $sort = false): array
@@ -757,6 +787,7 @@ class Template
     /**
      * 搜索模板页面中包含的TagLib库
      * 并返回列表
+     *
      * @access private
      * @param  string $content 模板内容
      * @return array|null
@@ -774,10 +805,11 @@ class Template
 
     /**
      * TagLib库解析
+     *
      * @access public
-     * @param  string   $tagLib 要解析的标签库
-     * @param  string   $content 要解析的模板内容
-     * @param  boolean  $hide 是否隐藏标签库前缀
+     * @param  string  $tagLib  要解析的标签库
+     * @param  string  $content 要解析的模板内容
+     * @param  boolean $hide    是否隐藏标签库前缀
      * @return void
      */
     public function parseTagLib(string $tagLib, string &$content, bool $hide = false): void
@@ -797,9 +829,10 @@ class Template
 
     /**
      * 分析标签属性
+     *
      * @access public
-     * @param  string   $str 属性字符串
-     * @param  string   $name 不为空时返回指定的属性名
+     * @param  string $str  属性字符串
+     * @param  string $name 不为空时返回指定的属性名
      * @return array
      */
     public function parseAttr(string $str, string $name = null): array
@@ -824,6 +857,7 @@ class Template
     /**
      * 模板标签解析
      * 格式： {TagName:args [|content] }
+     *
      * @access private
      * @param  string $content 要解析的模板内容
      * @return void
@@ -838,116 +872,116 @@ class Template
                 $flag = substr($str, 0, 1);
 
                 switch ($flag) {
-                    case '$':
-                        // 解析模板变量 格式 {$varName}
-                        // 是否带有?号
-                        if (false !== $pos = strpos($str, '?')) {
-                            $array = preg_split('/([!=]={1,2}|(?<!-)[><]={0,1})/', substr($str, 0, $pos), 2, PREG_SPLIT_DELIM_CAPTURE);
-                            $name  = $array[0];
+                case '$':
+                    // 解析模板变量 格式 {$varName}
+                    // 是否带有?号
+                    if (false !== $pos = strpos($str, '?')) {
+                        $array = preg_split('/([!=]={1,2}|(?<!-)[><]={0,1})/', substr($str, 0, $pos), 2, PREG_SPLIT_DELIM_CAPTURE);
+                        $name  = $array[0];
 
-                            $this->parseVar($name);
-                            //$this->parseVarFunction($name);
+                        $this->parseVar($name);
+                        //$this->parseVarFunction($name);
 
-                            $str = trim(substr($str, $pos + 1));
-                            $this->parseVar($str);
-                            $first = substr($str, 0, 1);
+                        $str = trim(substr($str, $pos + 1));
+                        $this->parseVar($str);
+                        $first = substr($str, 0, 1);
 
-                            if (strpos($name, ')')) {
-                                // $name为对象或是自动识别，或者含有函数
-                                if (isset($array[1])) {
-                                    $this->parseVar($array[2]);
-                                    $name .= $array[1] . $array[2];
-                                }
+                        if (strpos($name, ')')) {
+                            // $name为对象或是自动识别，或者含有函数
+                            if (isset($array[1])) {
+                                $this->parseVar($array[2]);
+                                $name .= $array[1] . $array[2];
+                            }
 
-                                switch ($first) {
-                                    case '?':
-                                        $this->parseVarFunction($name);
-                                        $str = '<?php echo (' . $name . ') ? ' . $name . ' : ' . substr($str, 1) . '; ?>';
-                                        break;
-                                    case '=':
-                                        $str = '<?php if(' . $name . ') echo ' . substr($str, 1) . '; ?>';
-                                        break;
-                                    default:
-                                        $str = '<?php echo ' . $name . '?' . $str . '; ?>';
-                                }
-                            } else {
-                                if (isset($array[1])) {
-                                    $express = true;
-                                    $this->parseVar($array[2]);
-                                    $express = $name . $array[1] . $array[2];
-                                } else {
-                                    $express = false;
-                                }
-
-                                if (in_array($first, ['?', '=', ':'])) {
-                                    $str = trim(substr($str, 1));
-                                    if ('$' == substr($str, 0, 1)) {
-                                        $str = $this->parseVarFunction($str);
-                                    }
-                                }
-
-                                // $name为数组
-                                switch ($first) {
-                                    case '?':
-                                        // {$varname??'xxx'} $varname有定义则输出$varname,否则输出xxx
-                                        $str = '<?php echo ' . ($express ?: 'isset(' . $name . ')') . ' ? ' . $this->parseVarFunction($name) . ' : ' . $str . '; ?>';
-                                        break;
-                                    case '=':
-                                        // {$varname?='xxx'} $varname为真时才输出xxx
-                                        $str = '<?php if(' . ($express ?: '!empty(' . $name . ')') . ') echo ' . $str . '; ?>';
-                                        break;
-                                    case ':':
-                                        // {$varname?:'xxx'} $varname为真时输出$varname,否则输出xxx
-                                        $str = '<?php echo ' . ($express ?: '!empty(' . $name . ')') . ' ? ' . $this->parseVarFunction($name) . ' : ' . $str . '; ?>';
-                                        break;
-                                    default:
-                                        if (strpos($str, ':')) {
-                                            // {$varname ? 'a' : 'b'} $varname为真时输出a,否则输出b
-                                            $array = explode(':', $str, 2);
-
-                                            $array[0] = '$' == substr(trim($array[0]), 0, 1) ? $this->parseVarFunction($array[0]) : $array[0];
-                                            $array[1] = '$' == substr(trim($array[1]), 0, 1) ? $this->parseVarFunction($array[1]) : $array[1];
-
-                                            $str = implode(' : ', $array);
-                                        }
-                                        $str = '<?php echo ' . ($express ?: '!empty(' . $name . ')') . ' ? ' . $str . '; ?>';
-                                }
+                            switch ($first) {
+                            case '?':
+                                $this->parseVarFunction($name);
+                                $str = '<?php echo (' . $name . ') ? ' . $name . ' : ' . substr($str, 1) . '; ?>';
+                                break;
+                            case '=':
+                                $str = '<?php if(' . $name . ') echo ' . substr($str, 1) . '; ?>';
+                                break;
+                            default:
+                                    $str = '<?php echo ' . $name . '?' . $str . '; ?>';
                             }
                         } else {
-                            $this->parseVar($str);
-                            $this->parseVarFunction($str);
-                            $str = '<?php echo ' . $str . '; ?>';
+                            if (isset($array[1])) {
+                                $express = true;
+                                $this->parseVar($array[2]);
+                                $express = $name . $array[1] . $array[2];
+                            } else {
+                                $express = false;
+                            }
+
+                            if (in_array($first, ['?', '=', ':'])) {
+                                $str = trim(substr($str, 1));
+                                if ('$' == substr($str, 0, 1)) {
+                                    $str = $this->parseVarFunction($str);
+                                }
+                            }
+
+                            // $name为数组
+                            switch ($first) {
+                            case '?':
+                                // {$varname??'xxx'} $varname有定义则输出$varname,否则输出xxx
+                                $str = '<?php echo ' . ($express ?: 'isset(' . $name . ')') . ' ? ' . $this->parseVarFunction($name) . ' : ' . $str . '; ?>';
+                                break;
+                            case '=':
+                                // {$varname?='xxx'} $varname为真时才输出xxx
+                                $str = '<?php if(' . ($express ?: '!empty(' . $name . ')') . ') echo ' . $str . '; ?>';
+                                break;
+                            case ':':
+                                // {$varname?:'xxx'} $varname为真时输出$varname,否则输出xxx
+                                $str = '<?php echo ' . ($express ?: '!empty(' . $name . ')') . ' ? ' . $this->parseVarFunction($name) . ' : ' . $str . '; ?>';
+                                break;
+                            default:
+                                if (strpos($str, ':')) {
+                                    // {$varname ? 'a' : 'b'} $varname为真时输出a,否则输出b
+                                    $array = explode(':', $str, 2);
+
+                                    $array[0] = '$' == substr(trim($array[0]), 0, 1) ? $this->parseVarFunction($array[0]) : $array[0];
+                                    $array[1] = '$' == substr(trim($array[1]), 0, 1) ? $this->parseVarFunction($array[1]) : $array[1];
+
+                                    $str = implode(' : ', $array);
+                                }
+                                $str = '<?php echo ' . ($express ?: '!empty(' . $name . ')') . ' ? ' . $str . '; ?>';
+                            }
                         }
-                        break;
-                    case ':':
-                        // 输出某个函数的结果
-                        $str = substr($str, 1);
+                    } else {
                         $this->parseVar($str);
+                        $this->parseVarFunction($str);
                         $str = '<?php echo ' . $str . '; ?>';
-                        break;
-                    case '~':
-                        // 执行某个函数
-                        $str = substr($str, 1);
-                        $this->parseVar($str);
-                        $str = '<?php ' . $str . '; ?>';
-                        break;
-                    case '-':
-                    case '+':
-                        // 输出计算
-                        $this->parseVar($str);
-                        $str = '<?php echo ' . $str . '; ?>';
-                        break;
-                    case '/':
-                        // 注释标签
-                        $flag2 = substr($str, 1, 1);
-                        if ('/' == $flag2 || ('*' == $flag2 && substr(rtrim($str), -2) == '*/')) {
-                            $str = '';
-                        }
-                        break;
-                    default:
-                        // 未识别的标签直接返回
-                        $str = $this->config['tpl_begin'] . $str . $this->config['tpl_end'];
-                        break;
+                    }
+                    break;
+                case ':':
+                    // 输出某个函数的结果
+                    $str = substr($str, 1);
+                    $this->parseVar($str);
+                    $str = '<?php echo ' . $str . '; ?>';
+                    break;
+                case '~':
+                    // 执行某个函数
+                    $str = substr($str, 1);
+                    $this->parseVar($str);
+                    $str = '<?php ' . $str . '; ?>';
+                    break;
+                case '-':
+                case '+':
+                    // 输出计算
+                    $this->parseVar($str);
+                    $str = '<?php echo ' . $str . '; ?>';
+                    break;
+                case '/':
+                    // 注释标签
+                    $flag2 = substr($str, 1, 1);
+                    if ('/' == $flag2 || ('*' == $flag2 && substr(rtrim($str), -2) == '*/')) {
+                        $str = '';
+                    }
+                    break;
+                default:
+                    // 未识别的标签直接返回
+                    $str = $this->config['tpl_begin'] . $str . $this->config['tpl_end'];
+                    break;
                 }
 
                 $content = str_replace($match[0], $str, $content);
@@ -960,6 +994,7 @@ class Template
     /**
      * 模板变量解析,支持使用函数
      * 格式： {$varname|function1|function2=arg1,arg2}
+     *
      * @access public
      * @param  string $varStr 变量数据
      * @return void
@@ -993,14 +1028,14 @@ class Template
                             $parseStr = $this->parseThinkVar($vars);
                         } else {
                             switch ($this->config['tpl_var_identify']) {
-                                case 'array': // 识别为数组
-                                    $parseStr = $first . '[\'' . implode('\'][\'', $vars) . '\']';
-                                    break;
-                                case 'obj': // 识别为对象
-                                    $parseStr = $first . '->' . implode('->', $vars);
-                                    break;
-                                default: // 自动判断数组或对象
-                                    $parseStr = '(is_array(' . $first . ')?' . $first . '[\'' . implode('\'][\'', $vars) . '\']:' . $first . '->' . implode('->', $vars) . ')';
+                            case 'array': // 识别为数组
+                                $parseStr = $first . '[\'' . implode('\'][\'', $vars) . '\']';
+                                break;
+                            case 'obj': // 识别为对象
+                                $parseStr = $first . '->' . implode('->', $vars);
+                                break;
+                            default: // 自动判断数组或对象
+                                $parseStr = '(is_array(' . $first . ')?' . $first . '[\'' . implode('\'][\'', $vars) . '\']:' . $first . '->' . implode('->', $vars) . ')';
                             }
                         }
                     } else {
@@ -1019,6 +1054,7 @@ class Template
     /**
      * 对模板中使用了函数的变量进行解析
      * 格式 {$varname|function1|function2=arg1,arg2}
+     *
      * @access public
      * @param  string $varStr     变量字符串
      * @param  bool   $autoescape 自动转义
@@ -1061,46 +1097,46 @@ class Template
                 }
 
                 switch (strtolower($fun)) {
-                    case 'raw':
-                        break;
-                    case 'date':
-                        $name = 'date(' . $args[1] . ',!is_numeric(' . $name . ')? strtotime(' . $name . ') : ' . $name . ')';
-                        break;
-                    case 'first':
-                        $name = 'current(' . $name . ')';
-                        break;
-                    case 'last':
-                        $name = 'end(' . $name . ')';
-                        break;
-                    case 'upper':
-                        $name = 'strtoupper(' . $name . ')';
-                        break;
-                    case 'lower':
-                        $name = 'strtolower(' . $name . ')';
-                        break;
-                    case 'format':
-                        $name = 'sprintf(' . $args[1] . ',' . $name . ')';
-                        break;
-                    case 'default': // 特殊模板函数
-                        if (false === strpos($name, '(')) {
-                            $name = '(isset(' . $name . ') && (' . $name . ' !== \'\')?' . $name . ':' . $args[1] . ')';
+                case 'raw':
+                    break;
+                case 'date':
+                    $name = 'date(' . $args[1] . ',!is_numeric(' . $name . ')? strtotime(' . $name . ') : ' . $name . ')';
+                    break;
+                case 'first':
+                    $name = 'current(' . $name . ')';
+                    break;
+                case 'last':
+                    $name = 'end(' . $name . ')';
+                    break;
+                case 'upper':
+                    $name = 'strtoupper(' . $name . ')';
+                    break;
+                case 'lower':
+                    $name = 'strtolower(' . $name . ')';
+                    break;
+                case 'format':
+                    $name = 'sprintf(' . $args[1] . ',' . $name . ')';
+                    break;
+                case 'default': // 特殊模板函数
+                    if (false === strpos($name, '(')) {
+                        $name = '(isset(' . $name . ') && (' . $name . ' !== \'\')?' . $name . ':' . $args[1] . ')';
+                    } else {
+                        $name = '(' . $name . ' ?: ' . $args[1] . ')';
+                    }
+                    break;
+                default: // 通用模板函数
+                    if (isset($args[1])) {
+                        if (strstr($args[1], '###')) {
+                            $args[1] = str_replace('###', $name, $args[1]);
+                            $name    = "$fun($args[1])";
                         } else {
-                            $name = '(' . $name . ' ?: ' . $args[1] . ')';
+                            $name = "$fun($name,$args[1])";
                         }
-                        break;
-                    default: // 通用模板函数
-                        if (isset($args[1])) {
-                            if (strstr($args[1], '###')) {
-                                $args[1] = str_replace('###', $name, $args[1]);
-                                $name    = "$fun($args[1])";
-                            } else {
-                                $name = "$fun($name,$args[1])";
-                            }
-                        } else {
-                            if (!empty($args[0])) {
-                                $name = "$fun($name)";
-                            }
+                    } else {
+                        if (!empty($args[0])) {
+                            $name = "$fun($name)";
                         }
+                    }
                 }
             }
 
@@ -1113,6 +1149,7 @@ class Template
     /**
      * 请求变量解析
      * 格式 以 $Request. 打头的变量属于请求变量
+     *
      * @access public
      * @param  array $vars 变量数组
      * @return string
@@ -1123,29 +1160,29 @@ class Template
         $param = implode('.', $vars);
 
         switch ($type) {
-            case 'SERVER':
-                $parseStr = '$_SERVER[\'' . $param . '\']';
-                break;
-            case 'GET':
-                $parseStr = '$_GET[\'' . $param . '\']';
-                break;
-            case 'POST':
-                $parseStr = '$_POST[\'' . $param . '\']';
-                break;
-            case 'COOKIE':
-                $parseStr = '$_COOKIE[\'' . $param . '\']';
-                break;
-            case 'SESSION':
-                $parseStr = '$_SESSION[\'' . $param . '\']';
-                break;
-            case 'ENV':
-                $parseStr = '$_ENV[\'' . $param . '\']';
-                break;
-            case 'REQUEST':
-                $parseStr = '$_REQUEST[\'' . $param . '\']';
-                break;
-            default:
-                $parseStr = '\'\'';
+        case 'SERVER':
+            $parseStr = '$_SERVER[\'' . $param . '\']';
+            break;
+        case 'GET':
+            $parseStr = '$_GET[\'' . $param . '\']';
+            break;
+        case 'POST':
+            $parseStr = '$_POST[\'' . $param . '\']';
+            break;
+        case 'COOKIE':
+            $parseStr = '$_COOKIE[\'' . $param . '\']';
+            break;
+        case 'SESSION':
+            $parseStr = '$_SESSION[\'' . $param . '\']';
+            break;
+        case 'ENV':
+            $parseStr = '$_ENV[\'' . $param . '\']';
+            break;
+        case 'REQUEST':
+            $parseStr = '$_REQUEST[\'' . $param . '\']';
+            break;
+        default:
+            $parseStr = '\'\'';
         }
 
         return $parseStr;
@@ -1154,6 +1191,7 @@ class Template
     /**
      * 特殊模板变量解析
      * 格式 以 $Think. 打头的变量属于特殊模板变量
+     *
      * @access public
      * @param  array $vars 变量数组
      * @return string
@@ -1164,20 +1202,20 @@ class Template
         $param = implode('.', $vars);
 
         switch ($type) {
-            case 'CONST':
-                $parseStr = strtoupper($param);
-                break;
-            case 'NOW':
-                $parseStr = "date('Y-m-d g:i a',time())";
-                break;
-            case 'LDELIM':
-                $parseStr = '\'' . ltrim($this->config['tpl_begin'], '\\') . '\'';
-                break;
-            case 'RDELIM':
-                $parseStr = '\'' . ltrim($this->config['tpl_end'], '\\') . '\'';
-                break;
-            default:
-                $parseStr = defined($type) ? $type : '\'\'';
+        case 'CONST':
+            $parseStr = strtoupper($param);
+            break;
+        case 'NOW':
+            $parseStr = "date('Y-m-d g:i a',time())";
+            break;
+        case 'LDELIM':
+            $parseStr = '\'' . ltrim($this->config['tpl_begin'], '\\') . '\'';
+            break;
+        case 'RDELIM':
+            $parseStr = '\'' . ltrim($this->config['tpl_end'], '\\') . '\'';
+            break;
+        default:
+            $parseStr = defined($type) ? $type : '\'\'';
         }
 
         return $parseStr;
@@ -1185,6 +1223,7 @@ class Template
 
     /**
      * 分析加载的模板文件并读取内容 支持多个模板文件读取
+     *
      * @access private
      * @param  string $templateName 模板文件名
      * @return string
@@ -1217,6 +1256,7 @@ class Template
 
     /**
      * 解析模板文件名
+     *
      * @access private
      * @param  string $template 文件名
      * @return string
@@ -1246,6 +1286,7 @@ class Template
 
     /**
      * 按标签生成正则
+     *
      * @access private
      * @param  string $tagName 标签名
      * @return string
@@ -1268,41 +1309,41 @@ class Template
             $single = strlen(ltrim($begin, '\\')) == 1 && strlen(ltrim($end, '\\')) == 1 ? true : false;
 
             switch ($tagName) {
-                case 'block':
-                    if ($single) {
-                        $regex = $begin . '(?:' . $tagName . '\b\s+(?>(?:(?!name=).)*)\bname=([\'\"])(?P<name>[\$\w\-\/\.]+)\\1(?>[^' . $end . ']*)|\/' . $tagName . ')' . $end;
-                    } else {
-                        $regex = $begin . '(?:' . $tagName . '\b\s+(?>(?:(?!name=).)*)\bname=([\'\"])(?P<name>[\$\w\-\/\.]+)\\1(?>(?:(?!' . $end . ').)*)|\/' . $tagName . ')' . $end;
-                    }
-                    break;
-                case 'literal':
-                    if ($single) {
-                        $regex = '(' . $begin . $tagName . '\b(?>[^' . $end . ']*)' . $end . ')';
-                        $regex .= '(?:(?>[^' . $begin . ']*)(?>(?!' . $begin . '(?>' . $tagName . '\b[^' . $end . ']*|\/' . $tagName . ')' . $end . ')' . $begin . '[^' . $begin . ']*)*)';
-                        $regex .= '(' . $begin . '\/' . $tagName . $end . ')';
-                    } else {
-                        $regex = '(' . $begin . $tagName . '\b(?>(?:(?!' . $end . ').)*)' . $end . ')';
-                        $regex .= '(?:(?>(?:(?!' . $begin . ').)*)(?>(?!' . $begin . '(?>' . $tagName . '\b(?>(?:(?!' . $end . ').)*)|\/' . $tagName . ')' . $end . ')' . $begin . '(?>(?:(?!' . $begin . ').)*))*)';
-                        $regex .= '(' . $begin . '\/' . $tagName . $end . ')';
-                    }
-                    break;
-                case 'restoreliteral':
-                    $regex = '<!--###literal(\d+)###-->';
-                    break;
-                case 'include':
-                    $name = 'file';
-                case 'taglib':
-                case 'layout':
-                case 'extend':
-                    if (empty($name)) {
-                        $name = 'name';
-                    }
-                    if ($single) {
-                        $regex = $begin . $tagName . '\b\s+(?>(?:(?!' . $name . '=).)*)\b' . $name . '=([\'\"])(?P<name>[\$\w\-\/\.\:@,\\\\]+)\\1(?>[^' . $end . ']*)' . $end;
-                    } else {
-                        $regex = $begin . $tagName . '\b\s+(?>(?:(?!' . $name . '=).)*)\b' . $name . '=([\'\"])(?P<name>[\$\w\-\/\.\:@,\\\\]+)\\1(?>(?:(?!' . $end . ').)*)' . $end;
-                    }
-                    break;
+            case 'block':
+                if ($single) {
+                    $regex = $begin . '(?:' . $tagName . '\b\s+(?>(?:(?!name=).)*)\bname=([\'\"])(?P<name>[\$\w\-\/\.]+)\\1(?>[^' . $end . ']*)|\/' . $tagName . ')' . $end;
+                } else {
+                    $regex = $begin . '(?:' . $tagName . '\b\s+(?>(?:(?!name=).)*)\bname=([\'\"])(?P<name>[\$\w\-\/\.]+)\\1(?>(?:(?!' . $end . ').)*)|\/' . $tagName . ')' . $end;
+                }
+                break;
+            case 'literal':
+                if ($single) {
+                    $regex = '(' . $begin . $tagName . '\b(?>[^' . $end . ']*)' . $end . ')';
+                    $regex .= '(?:(?>[^' . $begin . ']*)(?>(?!' . $begin . '(?>' . $tagName . '\b[^' . $end . ']*|\/' . $tagName . ')' . $end . ')' . $begin . '[^' . $begin . ']*)*)';
+                    $regex .= '(' . $begin . '\/' . $tagName . $end . ')';
+                } else {
+                    $regex = '(' . $begin . $tagName . '\b(?>(?:(?!' . $end . ').)*)' . $end . ')';
+                    $regex .= '(?:(?>(?:(?!' . $begin . ').)*)(?>(?!' . $begin . '(?>' . $tagName . '\b(?>(?:(?!' . $end . ').)*)|\/' . $tagName . ')' . $end . ')' . $begin . '(?>(?:(?!' . $begin . ').)*))*)';
+                    $regex .= '(' . $begin . '\/' . $tagName . $end . ')';
+                }
+                break;
+            case 'restoreliteral':
+                $regex = '<!--###literal(\d+)###-->';
+                break;
+            case 'include':
+                $name = 'file';
+            case 'taglib':
+            case 'layout':
+            case 'extend':
+                if (empty($name)) {
+                    $name = 'name';
+                }
+                if ($single) {
+                    $regex = $begin . $tagName . '\b\s+(?>(?:(?!' . $name . '=).)*)\b' . $name . '=([\'\"])(?P<name>[\$\w\-\/\.\:@,\\\\]+)\\1(?>[^' . $end . ']*)' . $end;
+                } else {
+                    $regex = $begin . $tagName . '\b\s+(?>(?:(?!' . $name . '=).)*)\b' . $name . '=([\'\"])(?P<name>[\$\w\-\/\.\:@,\\\\]+)\\1(?>(?:(?!' . $end . ').)*)' . $end;
+                }
+                break;
             }
         }
 
