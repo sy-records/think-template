@@ -211,13 +211,13 @@ class Template
         $this->extend[$rule] = $callback;
     }
 
-    /**
-     * 渲染模板文件
-     * @access public
-     * @param  string $template 模板文件
-     * @param  array  $vars 模板变量
-     * @return void
-     */
+	/**
+	 * 渲染模板文件 update：修改返回值
+	 * @param string $template 模板文件
+	 * @param array $vars 模板变量
+	 * @return string
+	 * @throws \Psr\SimpleCache\InvalidArgumentException
+	 */
     public function fetch(string $template, array $vars = []): string
     {
         if ($vars) {
