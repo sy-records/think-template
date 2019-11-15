@@ -1,6 +1,11 @@
 # ThinkTemplate
 
-基于XML和标签库的编译型模板引擎
+基于XML和标签库的编译型模板引擎，在Hyperf中使用ThinkTemplate
+
+## 安装
+```bash
+composer require sy-records/think-template
+```
 
 ## 主要特性
 
@@ -19,14 +24,7 @@
 - 允许定义模板禁用函数和禁用PHP语法；
 - 通过标签库方式扩展；
 
-## 安装
-
-~~~php
-composer require topthink/think-template
-~~~
-
 ## 用法示例
-
 
 ~~~php
 <?php
